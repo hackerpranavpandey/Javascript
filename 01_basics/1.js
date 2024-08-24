@@ -1,0 +1,1 @@
+console.log("Hello welcome to the javascript file")
