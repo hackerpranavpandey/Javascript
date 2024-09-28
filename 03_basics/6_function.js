@@ -1,6 +1,6 @@
 // access karo declare karne se pehle
 
- console.log(addOne(00)); // no error
+ console.log(addOne(00)); // no error just warning
 
  function addOne(num){
     return num+1;
