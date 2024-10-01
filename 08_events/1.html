@@ -1,0 +1,72 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> html events </title>
+  </head>
+  <body style="background-color: #424242;"> 
+    <h2> Amazing Images </h2>
+    <ul id="images">
+        <li><img width="200px" id="photoshop" alt="" src="https://tse1.mm.bing.net/th?id=OIP.BjPzkAq5dazNx9AwIaN9oAHaEK&pid=Api&P=0&h=220"></li>
+        <li><img width="200px" id="japan" alt="" src="https://tse1.mm.bing.net/th?id=OIP.BjPzkAq5dazNx9AwIaN9oAHaEK&pid=Api&P=0&h=220"></li>
+        <li><img width="200px" id="river" alt="" src="https://tse1.mm.bing.net/th?id=OIP.PhR9JzcYXNEsJnymsz41JgAAAA&pid=Api&P=0&h=220"></li>
+        <li><img width="200px" id="owl" alt="" src="https://tse4.mm.bing.net/th?id=OIP.86Pd9tQlX0wMJmC3drsFhgHaEh&pid=Api&P=0&h=220"></li>
+        <li><img width="200px" id="player" alt="" src="https://tse4.mm.bing.net/th?id=OIP.ifBk6-Tu3bk2ZcZuoTwrMgHaD4&pid=Api&P=0&h=220"></li>
+        <li style="color:aliceblue"><a href="https://google.com" id="google"> Google </a></li>
+    </ul>
+  </body>
+  <script>
+    
+    // document.getElementById("owl").onclick = function(){
+    //     alert("owl clicked")
+    // }
+
+    // attachEvent() 
+    // jQuery - onEventListner
+
+    // type , timestamp , defaultPrevented 
+    // target , toElement , srcElement, currentTarget
+    // clientX, clientY, scrrenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // document.getElementById('owl').addEventListener("click",function(e){
+    //     console.log(e)
+    //     alert("owl clicked again")
+    // }, false)
+    
+    // the concept of event propagation
+    // so which of the two will happen first is the question
+    // bubbling and capturing like if true then first ul then owl
+    // for false and it is by default first owl then ul
+
+    document.getElementById('images').addEventListener('click',function(e){
+        console.log("clicked inside the ul")
+    },false)
+
+    document.getElementById('owl').addEventListener('click',function(e){
+        console.log("owl clicked")
+        e.stopPropagation() // preventing bubbling
+    },false)
+
+    // so even if we click on google.com then also it will not work
+    document.getElementById('google').addEventListener('click',function(e){
+        e.preventDefault();
+        e.stopPropagation(); // again here we are preventing bubbling
+        console.log("google clicked");
+    },false)
+
+    // lets implement small target such that when we click on image it dissapera
+
+    document.querySelector('#images').addEventListener('click',function(e){
+        console.log(e.target.tagName);
+        if(e.target.tagName === "IMG"){
+            console.log(e.target.id)
+            const removeIt = e.target.parentNode
+            // removeIt.remove();
+            removeIt.parentNode.removeChild(removeIt);
+        }
+    },false)
+
+  </script>
+</html>

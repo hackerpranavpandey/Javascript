@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async2</title>
+</head>
+<body>
+    <h1>Chai aur JavaScript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        let id;  // Declare id globally
+
+        const sayDate = function(str) {
+            console.log(str, Date.now());
+        };
+
+        // Function to start the interval
+        const intervalId = function() {
+            if (!id) {  // Only start a new interval if one isn't running
+                id = setInterval(sayDate, 1000, "Jai Shree Krishna");
+            }
+        };
+
+        // Function to clear the interval
+        const clearId = function() {
+            if (id) {  // Only clear the interval if it's running
+                clearInterval(id);
+                id = null;  // Reset the id so that the interval can be started again
+            }
+        };
+
+        // Event listeners for start and stop buttons
+        document.querySelector('#start').addEventListener('click', intervalId);
+        document.querySelector('#stop').addEventListener('click', clearId);
+    </script>
+</body>
+</html>
