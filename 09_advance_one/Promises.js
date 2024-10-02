@@ -75,7 +75,7 @@ const promiseFive = new Promise(function(resolve,reject){
 });
 
 async function consumePromiseFive(){
-    // ensure to use try catch properly
+    // ensu re to use try catch properly
     try{
         const response = await promiseFive
         console.log(response)
