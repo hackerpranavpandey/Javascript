@@ -12,12 +12,16 @@
 
     <script>
         let id;  // Declare id globally
-
         const sayDate = function(str) {
+            // window.alert(str, Date.now());
             console.log(str, Date.now());
         };
-
-        // Function to start the interval
+        // example of asynchronous programming
+        // console.log("Start")
+        // setInterval(sayDate,1000);
+        // console.log("Hariom")
+        // clearInterval(id);
+        // // Function to start the interval
         const intervalId = function() {
             if (!id) {  // Only start a new interval if one isn't running
                 id = setInterval(sayDate, 1000, "Jai Shree Krishna");
@@ -32,7 +36,7 @@
             }
         };
 
-        // Event listeners for start and stop buttons
+        // // Event listeners for start and stop buttons
         document.querySelector('#start').addEventListener('click', intervalId);
         document.querySelector('#stop').addEventListener('click', clearId);
     </script>
