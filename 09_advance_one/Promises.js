@@ -1,19 +1,19 @@
 const promiseOne = new Promise(function(resolve, reject){
     // Do an async task
-    // DB calls, cryptography, network
+    // DB calls, cryptography, network call or req
     setTimeout(function(){
         console.log('Async task is complete');
-        resolve()
+        resolve(100)  // connect with .then
     }, 1000)
 })
 
-promiseOne.then(function(){
-    console.log("Promise consumed");
+promiseOne.then(function(val){
+    console.log(`Promise consumed ${val}`);
 })
 
 new Promise(function(resolve, reject){
     setTimeout(function(){
-        console.log('Async tas k 2');
+        console.log('Async task 2');
         resolve()
     }, 1000)
 
@@ -23,7 +23,7 @@ new Promise(function(resolve, reject){
 
 const promiseThree = new Promise(function(resolve,reject){
     setTimeout(function(){
-         resolve({username: "Chai", email: "chai@example.com"})
+        resolve({username: "Chai", email: "chai@example.com"})
     }, 1000)
 })
 
@@ -43,18 +43,25 @@ const promiseFour = new Promise(function(resolve,reject){
     }, 1000)
 })
 
+// chaining concepts
 promiseFour
 .then((user)=>{
     console.log(user);
     return user.username
-}).then((username)=>{
+})
+.then((username)=>{
     console.log(username)
-}).catch((err)=>{
-    console.log(err);  
-}).finally(() => {
+})
+.catch((err)=>{     
+    console.log("Damn error")  ;  
+})
+// will be executed always either there is error or not
+.finally(() => {   
     console.log("the promise is either resolved or rejected")
 })
 
+// now using async await concept
+// so there is two way to write the code 
 const promiseFive = new Promise(function(resolve,reject){
     setTimeout(function(){
         let error = true
@@ -68,12 +75,13 @@ const promiseFive = new Promise(function(resolve,reject){
 });
 
 async function consumePromiseFive(){
+    // ensure to use try catch properly
     try{
         const response = await promiseFive
         console.log(response)
     }
-    catch(err){
-        console.log(err)
+    catch(error){
+        console.log(error)
     }
 }
 
